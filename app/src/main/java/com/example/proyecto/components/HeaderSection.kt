@@ -1,6 +1,8 @@
 package com.example.proyecto.components
 
 import androidx.compose.foundation.background
+import com.example.proyecto.ui.theme.AvatarBackground
+import com.example.proyecto.ui.theme.TextSecondary
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,13 +17,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.example.proyecto.ui.theme.ProyectoTheme
 
 @Composable
 fun HeaderSection(userName: String) {
@@ -41,7 +45,7 @@ fun HeaderSection(userName: String) {
             Box(
                 modifier = Modifier
                     .size(48.dp)
-                    .background(Color(0xFFEAE1D8), CircleShape),
+                    .background(AvatarBackground, CircleShape),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
@@ -56,13 +60,14 @@ fun HeaderSection(userName: String) {
 
                 Text(
                     text = "Hola $userName",
-                    fontSize = 22.sp
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold
                 )
 
                 Text(
                     text = "Bienvenido",
-                    fontSize = 14.sp,
-                    color = Color.Gray
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = TextSecondary
                 )
             }
         }
@@ -73,4 +78,11 @@ fun HeaderSection(userName: String) {
         )
     }
 
+}
+@Preview(showBackground = true)
+@Composable
+fun HeaderSectionPreview() {
+    ProyectoTheme() {
+        HeaderSection(userName = "Jose")
+    }
 }
