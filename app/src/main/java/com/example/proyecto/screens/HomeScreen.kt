@@ -8,7 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.proyecto.components.HeaderSection
 import com.example.proyecto.components.SummaryCardsSection
+import com.example.proyecto.components.TransactionsSection
+import com.example.proyecto.data.sampleSummaryCards
 import com.example.proyecto.ui.theme.ProyectoTheme
+import com.example.proyecto.data.sampleTransactions
+import com.example.proyecto.data.sampleUser
 
 @Composable
 fun HomeScreen() {
@@ -17,8 +21,9 @@ fun HomeScreen() {
         modifier = Modifier.fillMaxSize()
     ) {
 
-        HeaderSection(userName = "Jose")
-        SummaryCardsSection()
+        HeaderSection(sampleUser)
+        SummaryCardsSection(sampleSummaryCards)
+        TransactionsSection(sampleTransactions)
 
     }
 

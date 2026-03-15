@@ -13,18 +13,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.proyecto.ui.theme.ProyectoTheme
-import com.example.proyecto.ui.theme.CardOrange
-import com.example.proyecto.ui.theme.CardPurple
-import com.example.proyecto.ui.theme.CardGreen
+import com.example.proyecto.data.SummaryCard
+import com.example.proyecto.data.sampleSummaryCards
 
 @Composable
-fun SummaryCardsSection() {
+fun SummaryCardsSection(cards: List<SummaryCard>) {
+    if (cards.size < 3) return
 
     Row(
         modifier = Modifier
@@ -32,121 +31,113 @@ fun SummaryCardsSection() {
             .padding(horizontal = 16.dp)
             .height(220.dp)
     ) {
-    //Tarjeta Actividad
+        // Tarjeta Actividad
         Card(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxHeight()
                 .padding(end = 8.dp),
             colors = CardDefaults.cardColors(
-                containerColor = CardGreen
+                containerColor = cards[0].backgroundColor
             )
         ) {
-
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
                 Icon(
                     imageVector = Icons.Default.Insights,
-                    contentDescription = "Activity"
+                    contentDescription = null
                 )
-
                 Spacer(modifier = Modifier.height(8.dp))
-
                 Text(
-                    text = "Actividad de la semana",
+                    text = cards[0].title,
                     textAlign = TextAlign.Center
                 )
-
-                Spacer(modifier = Modifier.height(6.dp))
-
-                Text(
-                    text = "$2,340",
-                    fontWeight = FontWeight.Bold
-                )
+                cards[0].amount?.let {
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        text = "$${it.toInt()}",
+                        fontWeight = FontWeight.Bold
+                    )
+                }
             }
         }
+
         Column(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxHeight()
         ) {
-//Tarjeta Ventas
+            // Tarjeta Ventas
             Card(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth()
                     .padding(bottom = 8.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = CardOrange
+                    containerColor = cards[1].backgroundColor
                 )
             ) {
-
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-
                     Icon(
                         imageVector = Icons.Default.ShoppingCart,
-                        contentDescription = "Sales"
+                        contentDescription = null
                     )
-
                     Spacer(modifier = Modifier.height(8.dp))
-
-                    Text("Ventas")
-
-                    Text(
-                        "$12,450",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold
-                    )
+                    Text(text = cards[1].title)
+                    cards[1].amount?.let {
+                        Text(
+                            text = "$${it.toInt()}",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
                 }
             }
-            // Tarjeta Ganancias
 
+            // Tarjeta Ganancias
             Card(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth(),
                 colors = CardDefaults.cardColors(
-                    containerColor = CardPurple
+                    containerColor = cards[2].backgroundColor
                 )
             ) {
-
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-
                     Icon(
                         imageVector = Icons.Default.AttachMoney,
-                        contentDescription = "Earnings"
+                        contentDescription = null
                     )
-
                     Spacer(modifier = Modifier.height(8.dp))
-
-                    Text("Ganancias")
-
-                    Text(
-                        "$4,830",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold
-                    )
+                    Text(text = cards[2].title)
+                    cards[2].amount?.let {
+                        Text(
+                            text = "$${it.toInt()}",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
                 }
             }
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun SummaryCardsPreview() {
-    ProyectoTheme() {
-        SummaryCardsSection()
+    ProyectoTheme {
+        SummaryCardsSection(sampleSummaryCards)
     }
 }

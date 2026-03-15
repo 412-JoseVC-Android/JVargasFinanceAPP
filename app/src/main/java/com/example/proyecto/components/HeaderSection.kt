@@ -25,10 +25,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.proyecto.data.User
+import com.example.proyecto.data.sampleUser
 import com.example.proyecto.ui.theme.ProyectoTheme
 
 @Composable
-fun HeaderSection(userName: String) {
+fun HeaderSection(user: User) {
 
     Row(
         modifier = Modifier
@@ -59,13 +61,13 @@ fun HeaderSection(userName: String) {
             Column {
 
                 Text(
-                    text = "Hola $userName",
+                    text = "Hola ${user.name}",
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold
                 )
 
                 Text(
-                    text = "Bienvenido",
+                    text = "Bienvenido - Saldo: $${String.format("%.2f", user.saldo)}",
                     style = MaterialTheme.typography.bodyMedium,
                     color = TextSecondary
                 )
@@ -83,6 +85,6 @@ fun HeaderSection(userName: String) {
 @Composable
 fun HeaderSectionPreview() {
     ProyectoTheme() {
-        HeaderSection(userName = "Jose")
+        HeaderSection(user = sampleUser)
     }
 }

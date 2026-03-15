@@ -16,3 +16,6 @@ val CardGreen = Color(0xFFE4F6E9)
 
 val AvatarBackground = Color(0xFFEAE1D8)
 val TextSecondary = Color(0xFF7A7A7A)
+
+val TransactionExpense = Color(0xFFD32F2F)
+val TransactionIncome = Color(0xFF388E3C)

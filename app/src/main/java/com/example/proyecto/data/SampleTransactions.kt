@@ -57,5 +57,22 @@ val sampleTransactions = listOf(
         amount = 250.00,
         time = "10:05 AM",
         icon = Icons.Default.AttachMoney
+    ),
+    Transaction(
+        id = 7,
+    name = "Freelance Payment",
+    category = "Income",
+    amount = 250.00,
+    time = "10:05 AM",
+    icon = Icons.Default.AttachMoney
+),
+
+    Transaction(
+        id = 8,
+        name = "Freelance Payment",
+        category = "Income",
+        amount = 250.00,
+        time = "10:05 AM",
+        icon = Icons.Default.AttachMoney
     )
 )
